@@ -10,7 +10,7 @@ export const storiesCtrl = {
         source: req?.file?.originalname ?? "",
         background: background 
       });
-      newStory.populate("user", "friends")
+      newStory.populate("user", "friends fistName lastName picturePath")
       await newStory.save();
       // const story = await Story.find().populate("user","-password")
       res.status(201).json({msg: "create a story success", newStory});
