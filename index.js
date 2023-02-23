@@ -68,10 +68,10 @@ app.use('/api', notificationRoutes);
 const httpServer = createServer(app);
 // const io = new Server(httpServer);
 
-const io = socket(httpServer, {
+const io = require('socket.io')(httpServer, {
   cors: {
-      origin: ["http://localhost:3000", "https://facebook-socket.netlify.app"],
-  },
+    origin: ["http://localhost:3000", "https://facebook-socket.netlify.app"],
+  }
 });
 
 io.on('connection', socket => {
