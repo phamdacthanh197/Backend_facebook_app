@@ -66,12 +66,19 @@ app.use('/api', notificationRoutes);
 
 //#region // !Socket
 const httpServer = createServer(app);
-const io = new Server(httpServer);
+// const io = new Server(httpServer);
+
+const io = socket(httpServer, {
+  cors: {
+      origin: ["http://localhost:3000", "https://facebook-socket.netlify.app"],
+  },
+});
 
 io.on('connection', socket => {
   console.log("connection")
   SocketServer(socket);
 })
+
 
 //MONGO SETUP
 const PORT = process.env.PORT || 6001;
